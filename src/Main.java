@@ -9,5 +9,8 @@ public class Main {
         ArrayList<Project> projects = data.projects;
         DictHash dh = new DictHash(contributors);
         dh.genDict();
+        MentoringLevel ml = new MentoringLevel(contributors, projects);
+        ArrayList<Contributor> out = ml.getContributor(1);
+        System.out.println();
     }
 }

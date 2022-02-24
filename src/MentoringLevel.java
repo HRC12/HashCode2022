@@ -13,18 +13,19 @@ public class MentoringLevel {
 
     public ArrayList<Contributor> getContributor (int projectIndex) {
 
-        HashMap hm = new HashMap();
         if (projects.get(projectIndex).getNeededRoles() != 1) {
             ArrayList<Boolean> found = new ArrayList<>();
+
+            ArrayList<Contributor> returned = new ArrayList<>();
             for (int k = 0; k < projects.get(projectIndex).getNeededSkillsList().size(); k++) {
                 found.add(false);
+                returned.add(new Contributor("", new ArrayList<>()));
             }
 
             for (int k = 0; k < projects.get(projectIndex).getNeededSkillsList().size() && !found.get(k); k++) {
                 int possibleFind = 0;
                 int arrayPos = 0;
                 String name = "";
-                ArrayList<Contributor> returned = new ArrayList<>();
                 ArrayList<Contributor> language2 = DictHash.map.get(projects.get(projectIndex).getNeededSkillsList().get(k).getName());
                 for (int i = 0; i < language2.size(); i++) {
                     for (int j = 0; j < language2.get(i).getSkillsList().size() && !found.get(k); j++) {
@@ -49,8 +50,8 @@ public class MentoringLevel {
                                     && !name.equals(language2.get(p).getSkillsList().get(j).getName())) {
                                         if (projects.get(projectIndex).getNeededSkillsList().get(l).getLevel() >=
                                                 language2.get(p).getSkillsList().get(j).getLevel() && language2.get(p).busy == false) {
-                                            returned.add(arrayPos, language2.get(possibleFind));
-                                            returned.add(l, language2.get(p));
+                                            returned.set(arrayPos, language2.get(possibleFind));
+                                            returned.set(l, language2.get(p));
                                             found.set(l,true);
                                             aux = l;
                                         }
@@ -64,9 +65,9 @@ public class MentoringLevel {
                         for (int j = 0; j < language2.get(i).getSkillsList().size() && !found.get(k); j++) {
                             if (language2.get(i).getSkillsList().get(j).getName().equals(
                                     projects.get(projectIndex).getNeededSkillsList().get(k).getName())) {
-                                if (projects.get(projectIndex).getNeededSkillsList().get(k).getLevel() >=
+                                if (projects.get(projectIndex).getNeededSkillsList().get(k).getLevel() <=
                                         language2.get(i).getSkillsList().get(j).getLevel() && language2.get(i).busy == false) {
-                                    returned.add(k, language2.get(projectIndex));
+                                    returned.set(k, language2.get(i));
                                     found.set(k, true);
                                 }
                             }
@@ -86,7 +87,7 @@ public class MentoringLevel {
                 for (int j = 0; j < language1.get(i).getSkillsList().size(); j++) {
                     if (language1.get(i).getSkillsList().get(j).getName().equals(
                             projects.get(projectIndex).getNeededSkillsList().get(0).getName())) {
-                        if (projects.get(projectIndex).getNeededSkillsList().get(0).getLevel() >=
+                        if (projects.get(projectIndex).getNeededSkillsList().get(0).getLevel() <=
                                 language1.get(i).getSkillsList().get(j).getLevel() && language1.get(i).busy == false) {
                             ArrayList<Contributor> returned = new ArrayList<>();
                             returned.add(language1.get(i));
