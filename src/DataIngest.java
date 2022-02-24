@@ -22,14 +22,17 @@ public class DataIngest {
             for (int i = 0; i < contNum; i++) {
                 String contName = reader.next();
                 int skillNum = reader.nextInt();
+                //System.out.println("skill num: " + skillNum);
 
                 ArrayList<Skill> contSkills = new ArrayList<>();
                 for (int j = 0; j < skillNum; j++) {
                     String skillName = reader.next();
+                    //System.out.println(skillName);
                     int skillLvl = reader.nextInt();
+                    //System.out.println(skillLvl);
                     contSkills.add(new Skill(skillName, skillLvl));
                 }
-                conts.add(new Contributor(contName, new ArrayList<>(contSkills)));
+                conts.add(new Contributor(contName, contSkills));
             }
             //reading projects
             for (int i = 0; i < projNum; i++) {
@@ -47,10 +50,68 @@ public class DataIngest {
                 }
                 proj.add(new Project(projName, new ArrayList<>(projSkills), daysToComp, score, deadline));
             }
-        } catch (Exception ignored) {
+        } catch (Exception e) {
+            System.out.println(e);
             System.out.println("Error reading file: " + path);
         }
         return new DataContainer(conts, proj);
     }
 
-}
+    public static void testReader (String path) {
+        DataContainer testData = ReadFile(path);
+
+        ArrayList<Contributor> conts = new ArrayList<>();
+        ArrayList<Project> projs = new ArrayList<>();
+        ArrayList<Skill> skills = new ArrayList<>();
+
+        skills.add(new Skill("C++", 2));
+        conts.add(new Contributor("Anna", skills));
+        skills.removeAll(skills);
+
+        skills.add(new Skill("HTML", 5));
+        skills.add(new Skill("CSS", 5));
+        conts.add(new Contributor("Bob", skills));
+        skills.removeAll(skills);
+
+        skills.add(new Skill("Python", 3));
+        conts.add(new Contributor("Maria", skills));
+        skills.removeAll(skills);
+
+        skills.add(new Skill("C++", 3));
+        projs.add(new Project("Logging", skills, 5, 10, 5));
+        skills.removeAll(skills);
+
+        skills.add(new Skill("HTML", 3));
+        skills.add(new Skill("C++", 2));
+        projs.add(new Project("WebServer", skills, 7, 10, 7));
+        skills.removeAll(skills);
+
+        skills.add(new Skill("Python", 3));
+        skills.add(new Skill("HTML", 3));
+        projs.add(new Project("WebChat", skills, 10, 20, 20));
+        skills.removeAll(skills);
+
+        DataContainer controlData = new DataContainer(conts, projs);
+
+
+            for (Contributor c : conts) {
+                if (testData.contributors.get(conts.indexOf(c)) != c) {
+                    System.out.println("ERROR in cont");
+                    break;
+                }
+
+                for (Skill s : c.getSkillsList()) {
+                    System.out.println(s.getName() + s.getLevel());
+                    /*if (testData.contributors.get(conts.indexOf(c)).getSkillsList(c.getSkillsList().indexOf(s)) != s) {
+                        System.out.println("ERROR in cont");
+                        break;
+                    }*/
+                }
+            }
+            for (Project p : projs) {
+                System.out.println(p.getName() + "-" + p.getDaysToComplete() + "-" + p.getDeadline() + "-" + p.getScore());
+            }
+        }
+    }
+
+

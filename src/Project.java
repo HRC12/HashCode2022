@@ -10,7 +10,7 @@ public class Project {
 
     public Project(String name, ArrayList<Skill> neededSkillsList, int daysToComplete, int score, int deadline) {
         this.name = name;
-        this.neededSkillsList = neededSkillsList;
+        this.neededSkillsList = new ArrayList<>(neededSkillsList);
         this.daysToComplete = daysToComplete;
         this.score = score;
         this.deadline = deadline;
