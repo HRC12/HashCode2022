@@ -21,7 +21,6 @@ public class Contributor {
         this.skillsList = new ArrayList<>(skillsList);
         for(Skill s: this.skillsList){
             skillsMap.put(s.getName(), s.getLevel());
-            System.out.println(s.getName() + s.getLevel());
         }
     }
 

@@ -22,14 +22,11 @@ public class DataIngest {
             for (int i = 0; i < contNum; i++) {
                 String contName = reader.next();
                 int skillNum = reader.nextInt();
-                //System.out.println("skill num: " + skillNum);
 
                 ArrayList<Skill> contSkills = new ArrayList<>();
                 for (int j = 0; j < skillNum; j++) {
                     String skillName = reader.next();
-                    //System.out.println(skillName);
                     int skillLvl = reader.nextInt();
-                    //System.out.println(skillLvl);
                     contSkills.add(new Skill(skillName, skillLvl));
                 }
                 conts.add(new Contributor(contName, contSkills));
@@ -93,25 +90,8 @@ public class DataIngest {
 
         DataContainer controlData = new DataContainer(conts, projs);
 
-
-            for (Contributor c : conts) {
-                if (testData.contributors.get(conts.indexOf(c)) != c) {
-                    System.out.println("ERROR in cont");
-                    break;
-                }
-
-                for (Skill s : c.getSkillsList()) {
-                    System.out.println(s.getName() + s.getLevel());
-                    /*if (testData.contributors.get(conts.indexOf(c)).getSkillsList(c.getSkillsList().indexOf(s)) != s) {
-                        System.out.println("ERROR in cont");
-                        break;
-                    }*/
-                }
-            }
-            for (Project p : projs) {
-                System.out.println(p.getName() + "-" + p.getDaysToComplete() + "-" + p.getDeadline() + "-" + p.getScore());
-            }
-        }
+        if (controlData.equals(testData)) System.out.println("GOOD");
     }
+}
 
 
