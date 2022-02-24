@@ -78,8 +78,9 @@ public class MentoringLevel {
                     }
                 }
 
-                return returned;
+
             }
+            return returned;
         }
         else {
             ArrayList<Contributor> language1 = DictHash.map.get(projects.get(projectIndex).getNeededSkillsList().get(0).getName());
@@ -99,7 +100,7 @@ public class MentoringLevel {
             return null;
         }
 
-        return null;
+
     }
 
 }

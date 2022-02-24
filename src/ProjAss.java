@@ -14,7 +14,7 @@ public class ProjAss {
         Qs.quickSort(projects, 0, projects.size());
     }
 
-   
+
     public void projectSelection(ArrayList<Project> projectsList){
         for (Project project : projects) {
             //SEND TO SERGI
@@ -29,6 +29,14 @@ public class ProjAss {
         }
     }
 
+    public boolean checkEnd(ArrayList<Project> projects) {
+        for (Project project: projects) {
+            if(!project.finished) {
+                return false;
+            }
+        }
+        return true;
+    }
     //Calculate score
     public int calcScore(Project project) {
         int scoreCalc;
@@ -44,7 +52,9 @@ public class ProjAss {
     }
 
 
-
+    public void print(){
+        DataPrint.Print("", projects);
+    }
     //Next day
     public void nextDay() {
         for (Project project : projects) {

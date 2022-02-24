@@ -3,7 +3,6 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        DataIngest.testReader("data/a_an_example.in.txt");
         DataContainer data = DataIngest.ReadFile("data/a_an_example.in.txt");
         ArrayList<Contributor> contributors = data.contributors;
         ArrayList<Project> projects = data.projects;
@@ -11,6 +10,13 @@ public class Main {
         dh.genDict();
         MentoringLevel ml = new MentoringLevel(contributors, projects);
         ArrayList<Contributor> out = ml.getContributor(1);
-        System.out.println();
+        ProjAss projAss = new ProjAss(projects, ml);
+        projAss.sortProjects();
+        projAss.projectSelection(projects);
+        while(!projAss.checkEnd(projects)) {
+            projAss.nextDay();
+        }
+
+
     }
 }
