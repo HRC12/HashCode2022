@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -47,8 +48,8 @@ public class DataIngest {
                 }
                 proj.add(new Project(projName, new ArrayList<>(projSkills), daysToComp, score, deadline));
             }
-        } catch (Exception e) {
-            System.out.println(e);
+        } catch (IOException e) {
+            e.printStackTrace();
             System.out.println("Error reading file: " + path);
         }
         return new DataContainer(conts, proj);
