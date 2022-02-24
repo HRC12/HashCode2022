@@ -7,6 +7,7 @@ public class Contributor {
     private final String name;
     public HashMap<String, Integer> skillsMap = new HashMap<>();
     public ArrayList<Skill> skillsList;
+    public boolean busy = false;
 
     public String getName() {
         return name;
