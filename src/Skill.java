@@ -9,7 +9,11 @@ public class Skill {
         return level;
     }
 
-    private final int level;
+    private int level;
+
+    public void incf(){
+        this.level++;
+    }
 
     public Skill(String name, int level) {
         this.name = name;

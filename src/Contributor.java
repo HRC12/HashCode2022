@@ -9,6 +9,7 @@ public class Contributor {
     public ArrayList<Skill> skillsList;
     public boolean busy = false;
 
+
     public String getName() {
         return name;
     }
