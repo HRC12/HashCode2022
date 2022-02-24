@@ -25,7 +25,7 @@ public class MentoringLevel {
                 int arrayPos = 0;
                 String name = "";
                 ArrayList<Contributor> returned = new ArrayList<>();
-                ArrayList<Contributor> language2 = map.get(projects.get(projectIndex).getNeededSkillsList().get(k).getName());
+                ArrayList<Contributor> language2 = DictHash.map.get(projects.get(projectIndex).getNeededSkillsList().get(k).getName());
                 for (int i = 0; i < language2.size(); i++) {
                     for (int j = 0; j < language2.get(i).getSkillsList().size() && !found.get(k); j++) {
                         if (language2.get(i).getSkillsList().get(j).getName().equals(
@@ -81,7 +81,7 @@ public class MentoringLevel {
             }
         }
         else {
-            ArrayList<Contributor> language1 = map.get(projects.get(projectIndex).getNeededSkillsList().get(0).getName());
+            ArrayList<Contributor> language1 = DictHash.map.get(projects.get(projectIndex).getNeededSkillsList().get(0).getName());
             for (int i = 0; i < language1.size(); i++) {
                 for (int j = 0; j < language1.get(i).getSkillsList().size(); j++) {
                     if (language1.get(i).getSkillsList().get(j).getName().equals(
@@ -98,6 +98,7 @@ public class MentoringLevel {
             return null;
         }
 
+        return null;
     }
 
 }
